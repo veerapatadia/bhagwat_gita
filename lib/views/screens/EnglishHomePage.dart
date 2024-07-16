@@ -27,15 +27,30 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bhagwat Gita"),
+        title: Text(
+          "Shreemad Bhagwat Gita",
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.black,
       ),
+      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: jsonData,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            Center(
-              child: Text("ERROR : ${snapshot.hasError}"),
+            return Center(
+              child: Text("ERROR : ${snapshot.error}"),
             );
           } else if (snapshot.hasData) {
             String? data = snapshot.data;
@@ -57,18 +72,53 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
                                 arguments: allData[i]);
                           },
                           child: Container(
-                            height: 170,
+                            height: 200,
                             width: 300,
-                            color: Colors.black.withOpacity(0.5),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "${allData[i]['chapter_number']}",
-                                  style: TextStyle(fontSize: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  "${allData[i]['image_name']}",
                                 ),
-                                Text(
-                                  "${allData[i]['name_meaning']}",
-                                  style: TextStyle(fontSize: 15),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.6),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          bottom: 20, top: 20, left: 10),
+                                      child: Text(
+                                        "${allData[i]['name_meaning']}",
+                                        style: TextStyle(
+                                          fontSize: 23,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Chapter No: ${allData[i]['chapter_number']}",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
