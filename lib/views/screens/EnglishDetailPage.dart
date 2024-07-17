@@ -40,6 +40,7 @@ class _EnglishDetailPageState extends State<EnglishDetailPage> {
                         Colors.black.withOpacity(0.8),
                         Colors.black.withOpacity(0.7),
                         Colors.black.withOpacity(0.6),
+                        Colors.black.withOpacity(0.5),
                         Colors.transparent,
                       ],
                     ),
