@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jsonbhagwatgita/provider/theme.dart';
 import 'package:jsonbhagwatgita/views/screens/EnglishDetailPage.dart';
+import 'package:jsonbhagwatgita/views/screens/EnglishShlokPage.dart';
 import 'package:jsonbhagwatgita/views/screens/HindiDetailPage.dart';
 import 'package:jsonbhagwatgita/views/screens/HindiHomePage.dart';
 import 'package:jsonbhagwatgita/views/screens/EnglishHomePage.dart';
+import 'package:jsonbhagwatgita/views/screens/HindiShlokPage.dart';
 import 'package:jsonbhagwatgita/views/screens/LanguagePage.dart';
 import 'package:jsonbhagwatgita/views/screens/SplashPage.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +45,8 @@ class _MyAppState extends State<MyApp> {
         'english_detail_page': (context) => EnglishDetailPage(),
         'hindi_home_page': (context) => HindiHomePage(),
         'hindi_detail_page': (context) => HindiDetailPage(),
+        'hindi_shlok_page': (context) => HindiShlokPage(),
+        'english_shlok_page': (context) => EnglishShlokPage(),
       },
     );
   }

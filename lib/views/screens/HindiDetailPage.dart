@@ -17,7 +17,7 @@ class _HindiDetailPageState extends State<HindiDetailPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 20),
+            padding: const EdgeInsets.only(top: 40, bottom: 20),
             child: Container(
               child: Column(
                 children: [
@@ -30,12 +30,22 @@ class _HindiDetailPageState extends State<HindiDetailPage> {
                         icon: Icon(Icons.arrow_back_ios),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 90),
+                        padding: const EdgeInsets.only(left: 90, top: 5),
                         child: Text(
                           "श्रीमद् भगवद्गीता",
                           style: TextStyle(
                             fontSize: 25,
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 70),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed('hindi_shlok_page', arguments: data);
+                          },
+                          icon: Icon(Icons.temple_hindu_sharp),
                         ),
                       ),
                     ],
@@ -79,22 +89,31 @@ class _HindiDetailPageState extends State<HindiDetailPage> {
               ),
             ],
           ),
-          SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15, right: 10, top: 20),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "${data['chapter_summary_hindi']}",
                       style: TextStyle(height: 2, fontSize: 17),
                     ),
+                    SizedBox(height: 10),
+                    // Text(
+                    //   "Shlokas",
+                    //   style: TextStyle(height: 2, fontSize: 17),
+                    // ),
+                    // SizedBox(height: 10),
+                    // Text(
+                    //   "${data['shlok']}",
+                    //   style: TextStyle(height: 2, fontSize: 17),
+                    // ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ],

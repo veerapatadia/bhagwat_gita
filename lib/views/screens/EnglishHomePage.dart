@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/theme.dart';
 
 class EnglishHomePage extends StatefulWidget {
   const EnglishHomePage({super.key});
@@ -29,22 +32,24 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
       appBar: AppBar(
         title: Text(
           "Shreemad Bhagwat Gita",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(fontWeight: FontWeight.w600),
         ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.white,
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Switch(
+                value: Provider.of<ThemeProvider>(context).istap,
+                onChanged: (val) {
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .changetheme(val);
+                },
+              ),
+            ],
           ),
-        ),
+        ],
         centerTitle: true,
-        backgroundColor: Colors.black,
       ),
-      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: jsonData,
         builder: (context, snapshot) {
@@ -87,7 +92,10 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: (Provider.of<ThemeProvider>(context)
+                                            .istap)
+                                        ? Colors.black.withOpacity(0.6)
+                                        : Colors.white.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
@@ -102,8 +110,7 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
                                         "${allData[i]['name_meaning']}",
                                         style: TextStyle(
                                           fontSize: 23,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.w700,
                                         ),
                                       ),
                                     ),
@@ -112,9 +119,8 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
                                       child: Text(
                                         "Chapter No: ${allData[i]['chapter_number']}",
                                         style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),

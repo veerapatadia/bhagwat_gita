@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/theme.dart';
@@ -15,62 +16,59 @@ class _LanguagePageState extends State<LanguagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Switch(
-                    value: Provider.of<ThemeProvider>(context).istap,
-                    onChanged: (val) {
-                      Provider.of<ThemeProvider>(context, listen: false)
-                          .changetheme(val);
-                    },
-                  ),
-                ],
-              ),
-            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Image.asset(
                   'assets/font/font.png',
-                  height: 700,
+                  height: 690,
                   width: 400,
                 ),
-                Card(
-                  color: Colors.black,
+                Padding(
+                  padding: const EdgeInsets.only(top: 30),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushNamed('hindi_home_page');
                     },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 65,
-                      width: 400,
-                      child: Text(
-                        "Hindi",
-                        style: TextStyle(color: Colors.white),
+                    child: Card(
+                      color: Colors.black,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 60,
+                        width: 400,
+                        child: Text(
+                          "Hindi",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                Card(
-                  color: Colors.black,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('english_home_page');
-                    },
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('english_home_page');
+                  },
+                  child: Card(
+                    color: Colors.black,
                     child: Container(
                       alignment: Alignment.center,
-                      height: 65,
+                      height: 60,
                       width: 400,
                       child: Text(
                         "English",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),

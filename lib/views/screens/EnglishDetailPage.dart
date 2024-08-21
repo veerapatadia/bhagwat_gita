@@ -30,12 +30,23 @@ class _EnglishDetailPageState extends State<EnglishDetailPage> {
                         icon: Icon(Icons.arrow_back_ios),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 50),
+                        padding: const EdgeInsets.only(left: 35),
                         child: Text(
                           "Shreemad Bhagwat Geeta",
                           style: TextStyle(
                             fontSize: 21,
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                                'english_shlok_page',
+                                arguments: data);
+                          },
+                          icon: Icon(Icons.temple_hindu_sharp),
                         ),
                       ),
                     ],

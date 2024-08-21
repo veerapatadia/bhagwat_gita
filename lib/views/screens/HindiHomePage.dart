@@ -1,7 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jsonbhagwatgita/provider/theme.dart';
+import 'package:provider/provider.dart';
 
 class HindiHomePage extends StatefulWidget {
   const HindiHomePage({super.key});
@@ -27,24 +28,26 @@ class _HindiHomePageState extends State<HindiHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.white,
-          ),
-        ),
         title: Text(
           "श्रीमद् भगवद्गीता",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(fontSize: 23),
         ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Switch(
+                value: Provider.of<ThemeProvider>(context).istap,
+                onChanged: (val) {
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .changetheme(val);
+                },
+              ),
+            ],
+          ),
+        ],
         centerTitle: true,
-        backgroundColor: Colors.black,
       ),
-      backgroundColor: Colors.black,
       body: FutureBuilder(
         future: jsonData,
         builder: (context, snapshot) {
@@ -86,7 +89,10 @@ class _HindiHomePageState extends State<HindiHomePage> {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: (Provider.of<ThemeProvider>(context)
+                                            .istap)
+                                        ? Colors.black.withOpacity(0.6)
+                                        : Colors.white.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
@@ -101,8 +107,8 @@ class _HindiHomePageState extends State<HindiHomePage> {
                                         "${allData[i]['name']}",
                                         style: TextStyle(
                                           fontSize: 23,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
+                                          // color: Colors.white,
+                                          fontWeight: FontWeight.w800,
                                         ),
                                       ),
                                     ),
@@ -111,9 +117,9 @@ class _HindiHomePageState extends State<HindiHomePage> {
                                       child: Text(
                                         "अध्याय संख्या: ${allData[i]['chapter_number_hindi']}",
                                         style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17,
+                                          // color: Colors.white,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),
