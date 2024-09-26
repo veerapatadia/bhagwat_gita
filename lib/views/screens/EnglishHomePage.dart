@@ -45,6 +45,14 @@ class _EnglishHomePageState extends State<EnglishHomePage> {
                       .changetheme(val);
                 },
               ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('english_favourite_page');
+                },
+                icon: Icon(
+                  Icons.favorite,
+                ),
+              ),
             ],
           ),
         ],

@@ -36,49 +36,64 @@ class _HindiShlokPageState extends State<HindiShlokPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shlokas'),
+        title: Text(
+          'Shlokas',
+          style: TextStyle(
+            fontFamily: 'Georgia',
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: selectedChapterVerses.isEmpty
           ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: selectedChapterVerses.length,
-              itemBuilder: (context, index) {
-                final verse = selectedChapterVerses[index];
-                return ListTile(
-                  subtitle: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 8),
-                        Text(
-                          'Verse ${verse["Sloka"]}:',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: selectedChapterVerses.length,
+                itemBuilder: (context, index) {
+                  final verse = selectedChapterVerses[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        'hindi_shlok_detail_page',
+                        arguments: verse,
+                      );
+                    },
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 8),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Verse ${verse["Sloka"]}',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              verse['Verse'],
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 8),
-                        Text(
-                          verse['Verse'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Translation (Hindi): ${verse["Translation_Hindi"]}',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
     );
   }

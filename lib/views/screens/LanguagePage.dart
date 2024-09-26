@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-
-import '../../provider/theme.dart';
 
 class LanguagePage extends StatefulWidget {
   const LanguagePage({Key? key}) : super(key: key);

@@ -40,45 +40,53 @@ class _EnglishShlokPageState extends State<EnglishShlokPage> {
       ),
       body: selectedChapterVerses.isEmpty
           ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: selectedChapterVerses.length,
-              itemBuilder: (context, index) {
-                final verse = selectedChapterVerses[index];
-                return ListTile(
-                  subtitle: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 8),
-                        Text(
-                          'Verse ${verse["Sloka"]}:',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: selectedChapterVerses.length,
+                itemBuilder: (context, index) {
+                  final verse = selectedChapterVerses[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        'english_shlok_detail_page',
+                        arguments: verse,
+                      );
+                    },
+                    child: Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 8),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Verse ${verse["Sloka"]}',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              verse['Verse'],
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 8),
-                        Text(
-                          verse['Verse'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Translation (English): ${verse["Translation_English"]}',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
     );
   }

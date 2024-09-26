@@ -43,6 +43,14 @@ class _HindiHomePageState extends State<HindiHomePage> {
                       .changetheme(val);
                 },
               ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('hindi_favourite_page');
+                },
+                icon: Icon(
+                  Icons.favorite,
+                ),
+              ),
             ],
           ),
         ],
@@ -106,9 +114,9 @@ class _HindiHomePageState extends State<HindiHomePage> {
                                       child: Text(
                                         "${allData[i]['name']}",
                                         style: TextStyle(
-                                          fontSize: 23,
+                                          fontSize: 25,
                                           // color: Colors.white,
-                                          fontWeight: FontWeight.w800,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
@@ -117,7 +125,7 @@ class _HindiHomePageState extends State<HindiHomePage> {
                                       child: Text(
                                         "अध्याय संख्या: ${allData[i]['chapter_number_hindi']}",
                                         style: TextStyle(
-                                          fontSize: 17,
+                                          fontSize: 18,
                                           // color: Colors.white,
                                           fontWeight: FontWeight.w600,
                                         ),
